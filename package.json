@@ -1,19 +1,36 @@
 {
     "name": "test-unknown",
     "version": "1.0.0",
-    "description": "",
+    "description": "test page",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "client": "npm run start --prefix client",
+        "client:install": "npm install --prefix client",
+        "client:build": "npm run build --prefix client",
+        "server": "node index",
+        "dev-server": "nodemon index",
+        "dev": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run client\"",
+        "start": "cross-env NODE_ENV=production node index.js"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Vlad-Pischaeff/test-unknown.git"
     },
-    "author": "",
+    "author": "Vlad Pischaeff",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/Vlad-Pischaeff/test-unknown/issues"
     },
-    "homepage": "https://github.com/Vlad-Pischaeff/test-unknown#readme"
+    "homepage": "https://github.com/Vlad-Pischaeff/test-unknown#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.1",
+        "mongoose": "^6.4.2"
+    },
+    "devDependencies": {
+        "concurrently": "^7.2.2",
+        "cross-env": "^7.0.3",
+        "nodemon": "^2.0.18"
+    }
 }

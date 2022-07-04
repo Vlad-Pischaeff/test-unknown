@@ -1,11 +1,11 @@
 const { Router } = require('express');
 const router = Router();
-const Items = require('../models/items');
+const Users = require('../models/users');
 
-router.get('/items', async (req, res) => {
+router.get('/users', async (req, res) => {
     try {
-        const items = await Items.find({});
-        res.status(201).json(items);
+        const users = await Users.find({});
+        res.status(201).json(users);
     } catch(e) {
         res.status(500).json({ message:`Something wrong ..., details ${e}` });
     }

@@ -13,7 +13,7 @@ app.use(express.json({ extended: true }));
 app.use(cors());
 
 // IMPORT ROUTES
-app.use('/api', require('./routes/routeItems'));
+app.use('/api', require('./routes/Users'));
 
 if (isProduction) {
     app.use('/', express.static(path.join(__dirname, 'client', 'build', )));
@@ -24,7 +24,7 @@ if (isProduction) {
 
 async function start() {
     try {
-        await mongoose.connect(`mongodb://localhost:27017/canalservice`, 
+        await mongoose.connect(`mongodb://localhost:27017/test`, 
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -34,7 +34,7 @@ async function start() {
         )
     
         await server.listen(PORT, () => {
-        console.log(`Server started on port ${PORT}`)
+            console.log(`Server started on port ${PORT}`)
         });
 
     } catch (e) {
