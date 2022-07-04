@@ -8,9 +8,9 @@ const FormLogin = () => {
                 <div className="login_body">
                     Login
                 </div>
-                <div className="login_footer">
+                <button className="login_footer">
                     Login
-                </div>
+                </button>
             </form>
         </main>
     );
