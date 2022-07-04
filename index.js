@@ -12,6 +12,7 @@ const server = require('http').createServer(app);
 app.use(express.json({ extended: true }));
 app.use(cors());
 
+app.use('/upload', express.static(path.join(__dirname, 'upload' )));
 // IMPORT ROUTES
 app.use('/api', require('./routes/Users'));
 
