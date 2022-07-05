@@ -3,6 +3,16 @@
     "version": "1.0.0",
     "description": "test page",
     "main": "index.js",
+    "author": "Vlad Pischaeff",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Vlad-Pischaeff/test-unknown.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Vlad-Pischaeff/test-unknown/issues"
+    },
+    "homepage": ".",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "client": "npm run start --prefix client",
@@ -13,16 +23,7 @@
         "dev": "cross-env NODE_ENV=development concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run client\"",
         "start": "cross-env NODE_ENV=production node index.js"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Vlad-Pischaeff/test-unknown.git"
-    },
-    "author": "Vlad Pischaeff",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Vlad-Pischaeff/test-unknown/issues"
-    },
-    "homepage": "https://github.com/Vlad-Pischaeff/test-unknown#readme",
+
     "dependencies": {
         "cors": "^2.8.5",
         "express": "^4.18.1",

@@ -11,4 +11,56 @@ router.get('/users', async (req, res) => {
     }
 })
 
+// /api/users/register create user
+router.put('/users/register', async (req, res) => {
+        try {
+
+            const { login, email, password, date, gender, photo } = req.body
+            const candidate = await Users.findOne({ login })
+
+        if (candidate) {
+            return res.status(400).json({message:`User login ${login} is already exists...`})
+        }
+
+        const user = new Users({ login, email, password, date, gender, photo })
+        
+        await user.save((err, doc) => {
+            if (err) {
+                console.error('CREATE USER ERROR ...', err) 
+                return res.status(500).json({message:`User ${login} not created...`})
+            } else {
+                console.error('CREATE USER SUCCESS ...', doc) 
+                res.status(201).json({ ...doc._doc })
+            }
+        })
+        } catch (e) {
+            console.log('Register error...', e)
+            res.status(500).json({message:`Something wrong while user ${login} registration...`})
+        }
+    }
+)
+
+// update user
+router.patch('/users/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const { site } = req.body
+    
+        if (site) {
+            const newSite = await User.findOne({ site: site, _id: { $ne: id}})
+            if (newSite) {
+            return res.status(400).json({ message:`Site ${site} is already in use...` })
+            }
+        }
+    
+        const user = await User.findByIdAndUpdate(id, req.body)
+        const newUser = await User.findOne({ _id: id })
+        res.status(201).json(newUser)
+    
+        manager.getUsers();
+    
+    } catch(e) {
+        res.status(500).json({ message:`Something wrong ..., details ${e}` })
+    }
+})
 module.exports = router;

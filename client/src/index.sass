@@ -37,7 +37,7 @@ header, footer
     color: white
 .login
     width: 20rem
-    height: 30rem
+    // height: 20rem
     background: rgba(255, 255, 255, 0.8)
     box-shadow: 4px 4px 68px 17px rgba(110, 193, 234, 0.4)
     border-radius: .5rem
@@ -46,22 +46,70 @@ header, footer
     flex-flow: column nowrap
     justify-content: center
     align-items: center
-.login_header, .login_footer
+.login_header, .login_button
     flex: 0 0 2rem
     text-transform: uppercase
     letter-spacing: .1rem
 .login_header
-    font-size: 1.5rem
+    font-size: 1.7em
     align-self: baseline
     color: darkviolet
-.login_footer
+.login_button
     width: 50%
     background: darkturquoise
     border: none
     border-radius: .3rem
-    font-size: 1rem
+    font-size: 1.2rem
+    padding: 1rem
+.login_button-sign
+    margin: 1rem 0
+    background: none
+    border: none
+    color: gray
+    font-size: 1.1rem
+    &:hover
+        color: black
 .login_body
     flex: 1 1 auto
     width: 100%
     margin: 1rem
+    // background: rgba(255, 255, 255, 0.2)
+.login_input
+    width: 100%
+    height: 2.5rem
     background: rgba(255, 255, 255, 0.2)
+    border: none
+    border-bottom: 1px solid gray
+    padding: .5rem
+    margin: .2rem 0
+    font-size: 1.3rem
+    letter-spacing: .1rem
+    &:focus-within
+        outline: none
+        border-bottom: 2px solid gray
+fieldset
+    border: none
+    padding: .5rem
+    display: flex
+    justify-content: flex-start
+    margin: 1rem 0
+    background: rgba(255, 255, 255, 0.2)
+    legend
+        color: gray
+.field-radio
+    width: 40%
+    margin: .5rem
+    input
+        margin-right: .5rem
+.login_photo
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-bottom: 1rem
+    img
+        width: 64px
+        height: 64px
+        border-radius: 50%
+        background: rgba(255, 255, 255, 0.5)
+        &:hover
+            cursor: pointer
