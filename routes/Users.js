@@ -18,24 +18,42 @@ router.put('/users/register', async (req, res) => {
             const { login, email, password, date, gender, photo } = req.body
             const candidate = await Users.findOne({ login })
 
-        if (candidate) {
-            return res.status(400).json({message:`User login ${login} is already exists...`})
-        }
-
-        const user = new Users({ login, email, password, date, gender, photo })
-        
-        await user.save((err, doc) => {
-            if (err) {
-                console.error('CREATE USER ERROR ...', err) 
-                return res.status(500).json({message:`User ${login} not created...`})
-            } else {
-                console.error('CREATE USER SUCCESS ...', doc) 
-                res.status(201).json({ ...doc._doc })
+            if (candidate) {
+                return res.status(400).json({message:`User login ${login} is already exists...`})
             }
-        })
+
+            const user = new Users({ login, email, password, date, gender, photo })
+            
+            await user.save((err, doc) => {
+                if (err) {
+                    console.error('CREATE USER ERROR ...', err) 
+                    return res.status(500).json({message:`User ${login} not created...`})
+                } else {
+                    console.error('CREATE USER SUCCESS ...', doc) 
+                    res.status(201).json({ ...doc._doc })
+                }
+            })
         } catch (e) {
             console.log('Register error...', e)
             res.status(500).json({message:`Something wrong while user ${login} registration...`})
+        }
+    }
+)
+
+// /api/users/login login user
+router.post('/users/login', async (req, res) => {
+        try {
+
+            const { login, password } = req.body
+            const candidate = await Users.findOne({ login, password })
+
+            if (!candidate) {
+                return res.status(400).json({ message:`User ${login} not found...` })
+            }
+        
+            res.status(201).json({...candidate._doc })
+        } catch (e) {
+            res.status(500).json({ message:`Something wrong ${e}...` })
         }
     }
 )
@@ -63,4 +81,5 @@ router.patch('/users/:id', async (req, res) => {
         res.status(500).json({ message:`Something wrong ..., details ${e}` })
     }
 })
+
 module.exports = router;

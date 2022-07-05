@@ -1,7 +1,23 @@
+import React, { useState } from 'react';
+import API from '../api';
+
 const FormLogin = ({ setHaveAccount }) => {
+    const [ user, setUser ] = useState({});
+
+    const changeValue = e => {
+        let obj = { ...user, [e.target.name]:e.target.value };
+        setUser(obj);
+    }
+
+    const submitUser = e => {
+        e.preventDefault();
+        API.post('api/users/login', { ...user })
+            .then(res => alert(`User ${res.data.login} successfully authorized...`))
+    }
+
     return (
         <main>
-            <form className="login">
+            <form className="login" onSubmit={submitUser}>
                 <div className="login_header">
                     Login
                 </div>
@@ -10,12 +26,14 @@ const FormLogin = ({ setHaveAccount }) => {
                             type="text" 
                             name="login"
                             placeholder="login" 
-                            required />
+                            required 
+                            onChange={changeValue} />
                     <input  className="login_input" 
                             type="password" 
                             name="password"
                             placeholder="password" 
-                            required />
+                            required
+                            onChange={changeValue} />
                 </div>
                 <div className="login_photo">
                     <img src="http://localhost:5000/upload/icons8-person-64.png" />
