@@ -48,7 +48,7 @@ router.post('/users/login', async (req, res) => {
             const candidate = await Users.findOne({ login, password })
 
             if (!candidate) {
-                return res.status(400).json({ message:`User ${login} not found...` })
+                return res.status(400).json({ message:`User ${login} not found, or wrong password...` })
             }
         
             res.status(201).json({...candidate._doc })

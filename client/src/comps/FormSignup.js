@@ -13,6 +13,7 @@ const FormSignup = ({ setHaveAccount }) => {
         e.preventDefault();
         API.put('api/users/register', { ...auth })
             .then(res => alert(`User ${res.data.login} successfully created...`))
+            .catch(e => alert(`Error - ${e.response.data.message}`))
     }
 
     return (

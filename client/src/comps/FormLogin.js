@@ -13,6 +13,7 @@ const FormLogin = ({ setHaveAccount }) => {
         e.preventDefault();
         API.post('api/users/login', { ...user })
             .then(res => alert(`User ${res.data.login} successfully authorized...`))
+            .catch(e => alert(`Error - ${e.response.data.message}`))
     }
 
     return (
