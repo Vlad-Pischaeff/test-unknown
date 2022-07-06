@@ -16,8 +16,6 @@ const FormSignup = ({ setHaveAccount }) => {
         e.preventDefault();
         API.put('api/users/register', { ...user })
             .then(res => {
-                alert(`User ${res.data.login} successfully created...`);
-                console.log('response..', res);
                 setUser(res.data);
                 navigate("/account", { replace: true });
             })

@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useUser } from "./FormLayout";
 import { FormImageUpload } from './FormImageUpload';
 import API from '../api';
+import { Link } from 'react-router-dom';
 
 const FormProfile = () => {
     const { user, setUser } = useUser();
@@ -89,10 +90,7 @@ const FormProfile = () => {
                 <input  className="login_button" 
                         type="submit" 
                         value="Submit" />
-                <input  className="login_button-sign" 
-                        type="button" 
-                        value="Show users" 
-                        onClick={() => {}} />
+                <Link to="/people" className="link">Show users</Link>
             </form>
         </main>
     );

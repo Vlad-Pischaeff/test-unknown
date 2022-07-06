@@ -15,27 +15,27 @@ router.get('/users', async (req, res) => {
 router.put('/users/register', async (req, res) => {
         try {
 
-            const { login, email, password, date, gender, photo } = req.body
-            const candidate = await Users.findOne({ login })
+            const { login, email, password, date, gender, photo } = req.body;
+            const candidate = await Users.findOne({ login });
 
             if (candidate) {
-                return res.status(400).json({message:`User login ${login} is already exists...`})
+                return res.status(400).json({message:`User login ${login} is already exists...`});
             }
 
-            const user = new Users({ login, email, password, date, gender, photo })
+            const user = new Users({ login, email, password, date, gender, photo });
             
             await user.save((err, doc) => {
                 if (err) {
-                    console.error('CREATE USER ERROR ...', err) 
-                    return res.status(500).json({message:`User ${login} not created...`})
+                    console.error('CREATE USER ERROR ...', err);
+                    return res.status(500).json({message:`User ${login} not created...`});
                 } else {
-                    console.error('CREATE USER SUCCESS ...', doc) 
-                    res.status(201).json({ ...doc._doc })
+                    console.error('CREATE USER SUCCESS ...', doc) ;
+                    res.status(201).json({ ...doc._doc });
                 }
             })
         } catch (e) {
-            console.log('Register error...', e)
-            res.status(500).json({message:`Something wrong while user ${login} registration...`})
+            console.log('Register error...', e);
+            res.status(500).json({message:`Something wrong while user ${login} registration...`});
         }
     }
 )
@@ -44,16 +44,16 @@ router.put('/users/register', async (req, res) => {
 router.post('/users/login', async (req, res) => {
         try {
 
-            const { login, password } = req.body
-            const candidate = await Users.findOne({ login, password })
+            const { login, password } = req.body;
+            const candidate = await Users.findOne({ login, password });
 
             if (!candidate) {
-                return res.status(400).json({ message:`User ${login} not found, or wrong password...` })
+                return res.status(400).json({ message:`User ${login} not found, or wrong password...` });
             }
         
-            res.status(201).json({...candidate._doc })
+            res.status(201).json({...candidate._doc });
         } catch (e) {
-            res.status(500).json({ message:`Something wrong ${e}...` })
+            res.status(500).json({ message:`Something wrong ${e}...` });
         }
     }
 )
@@ -61,14 +61,27 @@ router.post('/users/login', async (req, res) => {
 // /api/users/:id update user
 router.patch('/users/:id', async (req, res) => {
     try {
-        const { id } = req.params
+        const { id } = req.params;
 
-        await Users.findByIdAndUpdate(id, req.body)
-        const newUser = await Users.findOne({ _id: id })
-        res.status(201).json(newUser)
+        await Users.findByIdAndUpdate(id, req.body);
+        const newUser = await Users.findOne({ _id: id });
+        res.status(201).json(newUser);
     
     } catch(e) {
-        res.status(500).json({ message:`Something wrong ..., details ${e}` })
+        res.status(500).json({ message:`Something wrong ..., details ${e}` });
+    }
+})
+
+// /api/users/exclude/:id update user
+router.get('/users/exclude/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const users = await Users.find({ _id: { $ne: id }});
+        res.status(201).json(users);
+    
+    } catch(e) {
+        res.status(500).json({ message:`Something wrong ..., details ${e}` });
     }
 })
 
