@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from "./FormLayout";
 import { FormImageUpload } from './FormImageUpload';
+import { SubmitButton } from './userUI';
 import API from '../api';
 
 const FormProfile = () => {
@@ -87,9 +88,7 @@ const FormProfile = () => {
                         </div>
                     </fieldset>
                 </div>
-                <input  className="login_button" 
-                        type="submit" 
-                        value="Submit" />
+                <SubmitButton value="Update" />
                 <Link to="/people" className="link">Show users</Link>
             </form>
         </main>
