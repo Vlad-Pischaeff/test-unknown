@@ -50,7 +50,7 @@ export const FormImageUpload = ({ image }) => {
         <div className="upl_box" >
             <ReactCrop  crop={crop} aspect={1}
                         onChange={crop => setCrop(crop)} >
-                <img className="upl_image" src={image} ref={imgRef} />
+                <img src={image} ref={imgRef} style={{ "maxWidth": "10rem", "maxHeight": "10rem" }}/>
             </ReactCrop >
             <div>
                 <canvas ref={previewCanvasRef} className="upl_canvas" />

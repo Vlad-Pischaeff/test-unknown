@@ -16,10 +16,7 @@ const FormUsers = () => {
 
     useEffect(() => {
         API.get(`api/users/exclude/${user._id}`)
-            .then(res => { 
-                console.log('users..', res.data)
-                setUsers(res.data) 
-            })
+            .then(res => { setUsers(res.data) })
             .catch(e => alert(`Error - ${e.response.data.message}`))
     }, [])
 

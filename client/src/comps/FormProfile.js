@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useUser } from "./FormLayout";
 import { FormImageUpload } from './FormImageUpload';
 import API from '../api';
-import { Link } from 'react-router-dom';
+
 
 const FormProfile = () => {
     const { user, setUser } = useUser();
