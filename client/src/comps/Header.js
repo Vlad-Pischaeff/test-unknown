@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
     return (
         <header>
-            <p>Navigation</p>
+            <Link to="/">GO HOME</Link>
         </header>
     );
 };

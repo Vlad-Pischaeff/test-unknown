@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from "react-router-dom";
+import { useUser } from "./FormLayout";
 import API from '../api';
 
 const FormLogin = ({ setHaveAccount }) => {
-    const [ user, setUser ] = useState({});
+    const { user, setUser } = useUser();
+    let navigate = useNavigate();
 
     const changeValue = e => {
         let obj = { ...user, [e.target.name]:e.target.value };
@@ -12,7 +15,12 @@ const FormLogin = ({ setHaveAccount }) => {
     const submitUser = e => {
         e.preventDefault();
         API.post('api/users/login', { ...user })
-            .then(res => alert(`User ${res.data.login} successfully authorized...`))
+            .then(res => {
+                alert(`User ${res.data.login} successfully authorized...`);
+                console.log('response..', res);
+                setUser(res.data);
+                navigate("/account", { replace: true });
+            })
             .catch(e => alert(`Error - ${e.response.data.message}`))
     }
 
@@ -37,7 +45,7 @@ const FormLogin = ({ setHaveAccount }) => {
                             onChange={changeValue} />
                 </div>
                 <div className="login_photo">
-                    <img src="http://localhost:5000/upload/icons8-person-64.png" />
+                    <img src={user.photo} />
                 </div>
                 <input  className="login_button" 
                         type="submit" 

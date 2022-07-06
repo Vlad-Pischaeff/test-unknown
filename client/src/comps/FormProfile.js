@@ -1,60 +1,69 @@
-import React from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef } from 'react';
 import { useUser } from "./FormLayout";
+import { FormImageUpload } from './FormImageUpload';
 import API from '../api';
 
-const FormSignup = ({ setHaveAccount }) => {
+const FormProfile = () => {
     const { user, setUser } = useUser();
-    let navigate = useNavigate();
+    const [ image, setImage ] = useState(null);
+    const inputRef = useRef();
 
     const changeValue = e => {
         let obj = { ...user, [e.target.name]:e.target.value };
         setUser(obj);
     }
 
-    const addUser = e => {
+    const updateProfile = e => {
         e.preventDefault();
-        API.put('api/users/register', { ...user })
-            .then(res => {
-                alert(`User ${res.data.login} successfully created...`);
-                console.log('response..', res);
-                setUser(res.data);
-                navigate("/account", { replace: true });
-            })
+        API.patch(`api/users/${user._id}`, { ...user })
+            .then(res => { setUser(res.data) })
             .catch(e => alert(`Error - ${e.response.data.message}`))
+        setImage(null);
+    }
+
+    const onSelectFile = e => {
+        if (e.target.files && e.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onloadend = () => { setImage(reader.result) };
+            reader.readAsDataURL(e.target.files[0]);
+        }
     }
 
     return (
         <main>
-            <form className="login" onSubmit={addUser} >
+            <form className="login" onSubmit={updateProfile} style={{ "width": "30rem" }}>
                 <div className="login_header">
-                    Sign Up
+                    {`User ${user.login} profile`}
                 </div>
                 <div className="login_body">
-                    <input  className="login_input" 
-                            type="text" 
-                            name="login"
-                            placeholder="login" 
-                            required 
-                            onChange={changeValue} />
-                    <input  className="login_input" 
-                            type="password" 
-                            name="password"
-                            placeholder="password" 
-                            required 
-                            onChange={changeValue} />
+                    <div className="login_photo" onClick={() => inputRef.current.click()}>
+                        <img src={user.photo} />
+                        <input id="file-input" type="file" accept="image/*" onChange={onSelectFile} style={{ "display": "none" }} ref={inputRef} />
+                    </div>
+                    { image &&
+                        <FormImageUpload image={image} />
+                    }
                     <input  className="login_input" 
                             type="email" 
                             name="email"
                             placeholder="email" 
                             required 
-                            onChange={changeValue} />
+                            onChange={changeValue} 
+                            value={user.email} />
+                    <input  className="login_input" 
+                            type="password" 
+                            name="password"
+                            placeholder="password" 
+                            required 
+                            onChange={changeValue} 
+                            value={user.password} />
                     <input  className="login_input" 
                             type="date" 
                             name="date"
                             placeholder="birthday" 
                             required 
-                            onChange={changeValue} />
+                            onChange={changeValue} 
+                            value={user.date} />
                     <fieldset>
                         <legend>your gender</legend>
                         <div className="field-radio">
@@ -79,14 +88,14 @@ const FormSignup = ({ setHaveAccount }) => {
                 </div>
                 <input  className="login_button" 
                         type="submit" 
-                        value="Sign Up" />
+                        value="Submit" />
                 <input  className="login_button-sign" 
                         type="button" 
-                        value="Already have account?" 
-                        onClick={() => setHaveAccount(true)} />
+                        value="Show users" 
+                        onClick={() => {}} />
             </form>
         </main>
     );
 };
 
-export default FormSignup;
+export default FormProfile;

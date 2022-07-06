@@ -58,24 +58,14 @@ router.post('/users/login', async (req, res) => {
     }
 )
 
-// update user
+// /api/users/:id update user
 router.patch('/users/:id', async (req, res) => {
     try {
         const { id } = req.params
-        const { site } = req.body
-    
-        if (site) {
-            const newSite = await User.findOne({ site: site, _id: { $ne: id}})
-            if (newSite) {
-            return res.status(400).json({ message:`Site ${site} is already in use...` })
-            }
-        }
-    
-        const user = await User.findByIdAndUpdate(id, req.body)
-        const newUser = await User.findOne({ _id: id })
+
+        await Users.findByIdAndUpdate(id, req.body)
+        const newUser = await Users.findOne({ _id: id })
         res.status(201).json(newUser)
-    
-        manager.getUsers();
     
     } catch(e) {
         res.status(500).json({ message:`Something wrong ..., details ${e}` })

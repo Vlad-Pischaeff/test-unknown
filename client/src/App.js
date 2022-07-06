@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FormAuth from './comps/FormAuth';
 import FormLayout from './comps/FormLayout';
+import FormProfile from './comps/FormProfile';
 import NotFound from './comps/NotFouond';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<FormLayout/>}>
                     <Route path="/" element={<FormAuth />} />
+                    <Route path="/account" element={<FormProfile />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
