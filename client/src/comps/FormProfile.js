@@ -4,7 +4,6 @@ import { useUser } from "./FormLayout";
 import { FormImageUpload } from './FormImageUpload';
 import API from '../api';
 
-
 const FormProfile = () => {
     const { user, setUser } = useUser();
     const [ image, setImage ] = useState(null);
