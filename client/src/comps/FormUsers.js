@@ -10,9 +10,7 @@ const FormUsers = () => {
 
     useEffect(() => {
         user
-            ? API.get(`api/users/exclude/${user._id}`)
-                .then(res => { setUsers(res.data) })
-                .catch(e => alert(`Error - ${e.response.data.message}`))
+            ? API.getUsersExcept(user).then(res => { setUsers(res) })
             : alert("User undefined");
         // eslint-disable-next-line
     }, [])

@@ -15,12 +15,12 @@ const FormProfile = () => {
         setUser(obj);
     }
 
-    const updateProfile = e => {
+    const updateProfile = async e => {
         e.preventDefault();
-        API.patch(`api/users/${user._id}`, { ...user })
-            .then(res => { setUser(res.data) })
-            .catch(e => alert(`Error - ${e.response.data.message}`))
+        const response = await API.updateUserProfile(user);
+        response && setUser(response);
         setImage(null);
+        alert('Profile updated');
     }
 
     const onSelectFile = e => {

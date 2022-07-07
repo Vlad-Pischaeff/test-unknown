@@ -13,14 +13,13 @@ const FormLogin = ({ setHaveAccount }) => {
         setUser(obj);
     }
 
-    const submitUser = e => {
+    const submitUser = async e => {
         e.preventDefault();
-        API.post('api/users/login', { ...user })
-            .then(res => {
-                setUser(res.data);
-                navigate("/account", { replace: true });
-            })
-            .catch(e => alert(`Error - ${e.response.data.message}`))
+        const response = await API.userLogin(user);
+        if (response) {
+            setUser(response);
+            navigate("/account", { replace: true });
+        }
     }
 
     return (

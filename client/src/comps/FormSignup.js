@@ -13,14 +13,13 @@ const FormSignup = ({ setHaveAccount }) => {
         setUser(obj);
     }
 
-    const addUser = e => {
+    const addUser = async e => {
         e.preventDefault();
-        API.put('api/users/register', { ...user })
-            .then(res => {
-                setUser(res.data);
-                navigate("/account", { replace: true });
-            })
-            .catch(e => alert(`Error - ${e.response.data.message}`))
+        const response = await API.userRegistation(user);
+        if (response) {
+            setUser(response);
+            navigate("/account", { replace: true });
+        }
     }
 
     return (
