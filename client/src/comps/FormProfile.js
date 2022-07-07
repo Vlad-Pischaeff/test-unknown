@@ -34,9 +34,7 @@ const FormProfile = () => {
     return (
         <main>
             <form className="login" onSubmit={updateProfile} style={{ "width": "30rem" }}>
-                <div className="login_header">
-                    {`User ${user.login} profile`}
-                </div>
+                <UI.FormHeader title={`User ${user.login} profile`} />
                 <div className="login_body">
                     <div className="login_photo" onClick={() => inputRef.current.click()}>
                         <img src={user.photo} alt="user_photo" />

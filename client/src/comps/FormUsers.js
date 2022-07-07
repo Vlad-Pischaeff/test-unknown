@@ -20,9 +20,7 @@ const FormUsers = () => {
     return (
         <main>
             <form className="login" style={{ "width": "30rem" }}>
-                <div className="login_header">
-                    Accounts
-                </div>
+                <UI.FormHeader title="Accounts" />
                 <div className="login_body">
                     { users.length &&
                         users.map(user => <UI.UserProfile user={user} key={user._id} />)

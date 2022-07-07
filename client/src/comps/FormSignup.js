@@ -26,9 +26,7 @@ const FormSignup = ({ setHaveAccount }) => {
     return (
         <main>
             <form className="login" onSubmit={addUser} >
-                <div className="login_header">
-                    Sign Up
-                </div>
+                <UI.FormHeader title="Sign Up" />
                 <div className="login_body">
                     <input  className="login_input" 
                             type="text" 
