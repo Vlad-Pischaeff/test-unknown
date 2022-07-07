@@ -13,10 +13,8 @@ const FormLayout = () => {
             <Footer />
         </div>
     );
-};
+}
 
 export default FormLayout;
 
-export function useUser() {
-    return useOutletContext();
-};
+export const useUser = () => useOutletContext();

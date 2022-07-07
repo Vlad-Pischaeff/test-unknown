@@ -6,6 +6,6 @@ const Header = () => {
             <Link to="/">GO HOME</Link>
         </header>
     );
-};
+}
 
 export default Header;

@@ -52,6 +52,6 @@ const FormLogin = ({ setHaveAccount }) => {
             </form>
         </main>
     );
-};
+}
 
 export default FormLogin;

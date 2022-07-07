@@ -91,6 +91,6 @@ const FormProfile = () => {
             </form>
         </main>
     );
-};
+}
 
 export default FormProfile;

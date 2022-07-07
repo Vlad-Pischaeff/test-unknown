@@ -30,6 +30,6 @@ const FormUsers = () => {
             </form>
         </main>
     );
-};
+}
 
 export default FormUsers;

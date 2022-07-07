@@ -82,6 +82,6 @@ const FormSignup = ({ setHaveAccount }) => {
             </form>
         </main>
     );
-};
+}
 
 export default FormSignup;

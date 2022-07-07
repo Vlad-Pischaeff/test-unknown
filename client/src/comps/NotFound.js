@@ -4,6 +4,6 @@ const NotFound = () => {
             NotFound
         </main>
     );
-};
+}
 
 export default NotFound;
