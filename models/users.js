@@ -19,8 +19,7 @@ const schema = new Schema({
     },
     gender: {
         type: String,
-        required: true,
-        default: "male"
+        required: true
     },
     photo: {
         type: String,

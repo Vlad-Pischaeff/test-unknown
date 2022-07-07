@@ -4,7 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const FormLayout = () => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({ "gender": "male" });
     
     return (
         <div className="content">
