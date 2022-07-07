@@ -19,11 +19,13 @@ const schema = new Schema({
     },
     gender: {
         type: String,
-        required: true
+        required: true,
+        default: "male"
     },
     photo: {
         type: String,
-        required: true
+        required: true,
+        default: "http://localhost:5000/upload/icons8-person-64.png"
     },
 })
 
