@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from "./FormLayout";
 import { FormImageUpload } from './FormImageUpload';
-import { SubmitButton } from './userUI';
+import * as UI from './customUI';
 import API from '../api';
 
 const FormProfile = () => {
@@ -39,7 +39,7 @@ const FormProfile = () => {
                 </div>
                 <div className="login_body">
                     <div className="login_photo" onClick={() => inputRef.current.click()}>
-                        <img src={user.photo} />
+                        <img src={user.photo} alt="user_photo" />
                         <input id="file-input" type="file" accept="image/*" onChange={onSelectFile} style={{ "display": "none" }} ref={inputRef} />
                     </div>
                     { image &&
@@ -88,7 +88,7 @@ const FormProfile = () => {
                         </div>
                     </fieldset>
                 </div>
-                <SubmitButton value="Update" />
+                <UI.SubmitButton value="Update" />
                 <Link to="/people" className="link">Show users</Link>
             </form>
         </main>

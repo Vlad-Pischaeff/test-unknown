@@ -1,6 +1,6 @@
 import s from './SubmitButton.module.sass';
 
-const SubmitButton = ({ type="submit", value }) => {
+export const SubmitButton = ({ type="submit", value }) => {
     return (
         <input  className={s.button}
                 type={type} 
@@ -8,5 +8,3 @@ const SubmitButton = ({ type="submit", value }) => {
         />
     );
 }
-
-export default SubmitButton;

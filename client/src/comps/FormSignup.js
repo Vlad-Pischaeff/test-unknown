@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useUser } from "./FormLayout";
-import { SubmitButton } from './userUI';
+import * as UI from './customUI';
 import API from '../api';
 
 const FormSignup = ({ setHaveAccount }) => {
@@ -76,7 +76,7 @@ const FormSignup = ({ setHaveAccount }) => {
                         </div>
                     </fieldset>
                 </div>
-                <SubmitButton value="Sign Up" />
+                <UI.SubmitButton value="Sign Up" />
                 <input  className="login_button-sign" 
                         type="button" 
                         value="Already have account?" 

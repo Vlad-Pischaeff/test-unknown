@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useUser } from "./FormLayout";
-import { SubmitButton } from './userUI';
+import * as UI from './customUI';
 import API from '../api';
 
 const FormLogin = ({ setHaveAccount }) => {
@@ -44,9 +44,9 @@ const FormLogin = ({ setHaveAccount }) => {
                             onChange={changeValue} />
                 </div>
                 <div className="login_photo">
-                    <img src={user.photo} />
+                    <img src={user.photo} alt="user_photo" />
                 </div>
-                <SubmitButton value="Login" />
+                <UI.SubmitButton value="Login" />
                 <input  className="login_button-sign" 
                         type="button" 
                         value="Don't have an account yet?" 
