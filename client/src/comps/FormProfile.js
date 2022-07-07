@@ -43,9 +43,9 @@ const FormProfile = () => {
                     { image &&
                         <FormImageUpload image={image} />
                     }
-                    <UI.Input email name="email" ph="email" value={user.email} onChange={changeValue} />
-                    <UI.Input password name="password" ph="password" value={user.password} onChange={changeValue} />
-                    <UI.Input date name="date" ph="birthday"value={user.date} onChange={changeValue} />
+                    <UI.Input email value={user.email} onChange={changeValue} />
+                    <UI.Input password value={user.password} onChange={changeValue} />
+                    <UI.Input date value={user.date} onChange={changeValue} />
                     <fieldset>
                         <legend>your gender</legend>
                         <div className="field-radio">

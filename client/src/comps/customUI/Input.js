@@ -12,8 +12,8 @@ export const Input = ({ onChange, ...props }) => {
     return (
         <input  className={s.input} 
                 type={setType()} 
-                name={props.name}
-                placeholder={props.ph}
+                name={props?.name || setType()}
+                placeholder={props?.ph ? props.ph : props.name || setType()}
                 value={props.value}
                 required 
                 onChange={onChange} />
