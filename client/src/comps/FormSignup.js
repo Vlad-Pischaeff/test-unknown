@@ -27,30 +27,10 @@ const FormSignup = ({ setHaveAccount }) => {
             <form className="login" onSubmit={addUser} >
                 <UI.FormHeader title="Sign Up" />
                 <div className="login_body">
-                    <input  className="login_input" 
-                            type="text" 
-                            name="login"
-                            placeholder="login" 
-                            required 
-                            onChange={changeValue} />
-                    <input  className="login_input" 
-                            type="password" 
-                            name="password"
-                            placeholder="password" 
-                            required 
-                            onChange={changeValue} />
-                    <input  className="login_input" 
-                            type="email" 
-                            name="email"
-                            placeholder="email" 
-                            required 
-                            onChange={changeValue} />
-                    <input  className="login_input" 
-                            type="date" 
-                            name="date"
-                            placeholder="birthday" 
-                            required 
-                            onChange={changeValue} />
+                    <UI.Input text name="login" ph="login" onChange={changeValue} />
+                    <UI.Input password name="password" ph="password" onChange={changeValue} />
+                    <UI.Input email name="email" ph="email" onChange={changeValue} />
+                    <UI.Input date name="date" ph="birthday" onChange={changeValue} />
                     <fieldset>
                         <legend>your gender</legend>
                         <div className="field-radio">

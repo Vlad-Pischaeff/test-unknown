@@ -27,18 +27,8 @@ const FormLogin = ({ setHaveAccount }) => {
             <form className="login" onSubmit={submitUser}>
                 <UI.FormHeader title="Login" />
                 <div className="login_body">
-                    <input  className="login_input" 
-                            type="text" 
-                            name="login"
-                            placeholder="login" 
-                            required 
-                            onChange={changeValue} />
-                    <input  className="login_input" 
-                            type="password" 
-                            name="password"
-                            placeholder="password" 
-                            required
-                            onChange={changeValue} />
+                    <UI.Input text name="login" ph="login" onChange={changeValue} />
+                    <UI.Input password name="password" ph="password" onChange={changeValue} />
                 </div>
                 <div className="login_photo">
                     <img src={user.photo} alt="user_photo" />
