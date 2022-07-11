@@ -1,20 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import FormAuth from './comps/FormAuth';
-import FormLayout from './comps/FormLayout';
-import FormProfile from './comps/FormProfile';
-import FormUsers from './comps/FormUsers';
-import NotFound from './comps/NotFound';
+import * as FORM from './comps';
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<FormLayout/>}>
-                    <Route path="/" element={<FormAuth />} />
-                    <Route path="/account" element={<FormProfile />} />
-                    <Route path="/people" element={<FormUsers />} />
-                    <Route path="*" element={<NotFound />} />
+                <Route path="/" element={<FORM.FormLayout/>}>
+                    <Route index element={<FORM.FormAuth />} />
+                    <Route path="/account" element={<FORM.FormProfile />} />
+                    <Route path="/people" element={<FORM.FormUsers />} />
+                    <Route path="*" element={<FORM.NotFound />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FormLogin from './FormLogin';
 import FormSignup from './FormSignup';
 
-const FormAuth = () => {
+export const FormAuth = () => {
     const [ haveAccount, setHaveAccount ] = useState(false);
 
     return (
@@ -13,6 +13,4 @@ const FormAuth = () => {
             }
         </div>
     );
-}
-
-export default FormAuth;
+};

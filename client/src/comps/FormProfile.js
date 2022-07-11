@@ -5,7 +5,7 @@ import { FormImageUpload } from './FormImageUpload';
 import * as UI from './customUI';
 import API from '../api';
 
-const FormProfile = () => {
+export const FormProfile = () => {
     const { user, setUser } = useUser();
     const [ image, setImage ] = useState(null);
     const inputRef = useRef();
@@ -73,6 +73,4 @@ const FormProfile = () => {
             </form>
         </main>
     );
-}
-
-export default FormProfile;
+};

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as UI from './customUI';
 import API from '../api';
 
-const FormUsers = () => {
+export const FormUsers = () => {
     const { user } = useUser();
     const [ users, setUsers ] = useState([]);
 
@@ -28,6 +28,4 @@ const FormUsers = () => {
             </form>
         </main>
     );
-}
-
-export default FormUsers;
+};
