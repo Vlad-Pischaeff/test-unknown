@@ -3,29 +3,29 @@ const { Schema, model } = require('mongoose');
 const schema = new Schema({
     login: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
-        required: true
+        required: true,
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
     date: {
         type: String,
-        required: true
+        required: true,
     },
     gender: {
         type: String,
-        required: true
+        required: true,
     },
     photo: {
         type: String,
         required: true,
-        default: "http://localhost:5000/upload/icons8-person-64.png"
+        default: 'http://localhost:5000/upload/icons8-person-64.png',
     },
-})
+});
 
 module.exports = model('Users', schema);
