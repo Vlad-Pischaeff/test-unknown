@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 const Users = require('../models/users');
 
-router.get('/users', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const users = await Users.find({});
         res.status(201).json(users);
@@ -13,7 +13,7 @@ router.get('/users', async (req, res) => {
 });
 
 // /api/users/register create user
-router.put('/users/register', async (req, res) => {
+router.put('/register', async (req, res) => {
     try {
         const {
             login, email, password, date, gender, photo,
@@ -45,7 +45,7 @@ router.put('/users/register', async (req, res) => {
 });
 
 // /api/users/login login user
-router.post('/users/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const { login, password } = req.body;
         const candidate = await Users.findOne({ login, password });
@@ -62,7 +62,7 @@ router.post('/users/login', async (req, res) => {
 });
 
 // /api/users/:id update user
-router.patch('/users/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -75,7 +75,7 @@ router.patch('/users/:id', async (req, res) => {
 });
 
 // /api/users/exclude/:id update user
-router.get('/users/exclude/:id', async (req, res) => {
+router.get('/exclude/:id', async (req, res) => {
     try {
         const { id } = req.params;
 

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { useUser } from "./FormLayout";
+import API from '../api';
 
 export const FormImageUpload = ({ image }) => {
     const { user, setUser } = useUser();

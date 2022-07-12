@@ -17,7 +17,8 @@ export const FormProfile = () => {
 
     const updateProfile = async e => {
         e.preventDefault();
-        const response = await API.updateUserProfile(user);
+        let profile = await saveFile(user.photo);
+        const response = await API.updateUserProfile(profile);
         response && setUser(response);
         setImage(null);
         alert('Profile updated');
@@ -29,6 +30,12 @@ export const FormProfile = () => {
             reader.onloadend = () => { setImage(reader.result) };
             reader.readAsDataURL(e.target.files[0]);
         }
+    }
+
+    const saveFile = async file => {
+        let { name } = await API.saveImage({ "photo": file });
+        let obj = { ...user, "photo": `http://localhost:5000/upload/${name}.jpeg` };
+        return obj;
     }
 
     return (

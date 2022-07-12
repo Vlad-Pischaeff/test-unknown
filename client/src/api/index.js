@@ -38,4 +38,12 @@ export default {
             alert(`Error - ${e.response.data.message}`);
         }
     },
+    async saveImage(imgObj) {
+        try {
+            const response = await API.post('api/upload', { ...imgObj });
+            return response.data;
+        } catch(e) {
+            alert(`Error - ${e.response.data.message}`);
+        }
+    },
 }
