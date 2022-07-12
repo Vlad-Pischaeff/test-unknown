@@ -4,6 +4,7 @@ import { useUser } from "./FormLayout";
 import { FormImageUpload } from './FormImageUpload';
 import * as UI from './customUI';
 import API from '../api';
+import { SERVER } from '../conf';
 
 export const FormProfile = () => {
     const { user, setUser } = useUser();
@@ -34,7 +35,7 @@ export const FormProfile = () => {
 
     const saveFile = async file => {
         let { name } = await API.saveImage({ "photo": file });
-        let obj = { ...user, "photo": `http://localhost:5000/upload/${name}.jpeg` };
+        let obj = { ...user, "photo": `${SERVER}/upload/${name}.jpeg` };
         return obj;
     }
 
