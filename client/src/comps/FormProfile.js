@@ -34,7 +34,9 @@ export const FormProfile = () => {
     }
 
     const saveFile = async file => {
+        // сохраняем base64 картинку в файл и получаем его имя
         let { name } = await API.saveImage({ "photo": file });
+        // обновляем профиль пользователя
         let obj = { ...user, "photo": `${SERVER}/upload/${name}.jpeg` };
         return obj;
     }
