@@ -23,8 +23,7 @@ const usersController = () => {
             const candidate = await Users.findOne({ login });
     
             if (candidate) {
-                res.status(400).json({ message: `User login ${login} is already exists...` });
-                return;
+                throw new Error(`User login ${login} is already exists...`);
             }
     
             const user = new Users({
@@ -33,16 +32,12 @@ const usersController = () => {
     
             await user.save((err, doc) => {
                 if (err) {
-                    console.error('CREATE USER ERROR ...', err);
-                    res.status(500).json({ message: `User ${login} not created...` });
-                    return;
+                    throw new Error(`User ${login} not created...`);
                 }
-                console.error('CREATE USER SUCCESS ...', doc);
                 res.status(201).json({ ...doc._doc });
             });
         } catch (e) {
-            console.log('Register error...', e);
-            res.status(500).json({ message: 'Something wrong while user registration...' });
+            res.status(500).json({ message: `${e}` });
         }
     };
     /********************************************
@@ -54,13 +49,12 @@ const usersController = () => {
             const candidate = await Users.findOne({ login, password });
     
             if (!candidate) {
-                res.status(400).json({ message: `User ${login} not found, or wrong password...` });
-                return;
+                throw new Error(`User ${login} not found, or wrong password...`);
             }
     
             res.status(201).json({ ...candidate._doc });
         } catch (e) {
-            res.status(500).json({ message: `Something wrong ${e}...` });
+            res.status(500).json({ message: `${e}` });
         }
     };
     /********************************************

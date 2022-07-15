@@ -11,7 +11,7 @@ export default {
             const response = await API.post('api/users/login', { ...user });
             return response.data;
         } catch(e) {
-            alert(`Error - ${e.response.data.message}`);
+            alert(e.response.data.message);
         }
     },
     async updateUserProfile(user) {
@@ -19,7 +19,7 @@ export default {
             const response = await API.patch(`api/users/${user._id}`, { ...user });
             return response.data;
         } catch(e) {
-            alert(`Error - ${e.response.data.message}`);
+            alert(e.response.data.message);
         }
     },
     async userRegistation(user) {
@@ -27,7 +27,7 @@ export default {
             const response = await API.put('api/users/register', { ...user });
             return response.data;
         } catch(e) {
-            alert(`Error - ${e.response.data.message}`);
+            alert(e.response.data.message);
         }
     },
     async getUsersExcept(user) {
@@ -35,7 +35,7 @@ export default {
             const response = await API.get(`api/users/exclude/${user._id}`);
             return response.data;
         } catch(e) {
-            alert(`Error - ${e.response.data.message}`);
+            alert(e.response.data.message);
         }
     },
     async saveImage(imgObj) {
@@ -43,7 +43,7 @@ export default {
             const response = await API.post('api/upload', { ...imgObj });
             return response.data;
         } catch(e) {
-            alert(`Error - ${e.response.data.message}`);
+            alert(e.response.data.message);
         }
     },
 }
