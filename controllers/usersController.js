@@ -21,15 +21,15 @@ const usersController = () => {
                 login, email, password, date, gender, photo,
             } = req.body;
             const candidate = await Users.findOne({ login });
-    
+
             if (candidate) {
                 throw new Error(`User login ${login} is already exists...`);
             }
-    
+
             const user = new Users({
                 login, email, password, date, gender, photo,
             });
-    
+
             await user.save((err, doc) => {
                 if (err) {
                     throw new Error(`User ${login} not created...`);
@@ -47,11 +47,11 @@ const usersController = () => {
         try {
             const { login, password } = req.body;
             const candidate = await Users.findOne({ login, password });
-    
+
             if (!candidate) {
                 throw new Error(`User ${login} not found, or wrong password...`);
             }
-    
+
             res.status(201).json({ ...candidate._doc });
         } catch (e) {
             res.status(500).json({ message: `${e}` });
@@ -63,7 +63,7 @@ const usersController = () => {
     const updateUser = async (req, res) => {
         try {
             const { id } = req.params;
-    
+
             await Users.findByIdAndUpdate(id, req.body);
             const newUser = await Users.findOne({ _id: id });
             res.status(201).json(newUser);
@@ -77,7 +77,7 @@ const usersController = () => {
     const getExcludeUser = async (req, res) => {
         try {
             const { id } = req.params;
-    
+
             const users = await Users.find({ _id: { $ne: id } });
             res.status(201).json(users);
         } catch (e) {
